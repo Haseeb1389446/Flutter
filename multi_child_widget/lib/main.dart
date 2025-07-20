@@ -165,11 +165,14 @@ void main() {
         //   ],
         // ),
 
+        // GridView
+
         body: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 20,
-            crossAxisSpacing: 10
+            crossAxisSpacing: 10,
+            childAspectRatio: 6/6
             ),
           children: [
             Container(
