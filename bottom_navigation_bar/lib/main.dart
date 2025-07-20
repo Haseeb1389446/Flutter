@@ -11,6 +11,8 @@ void main(){
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static List<Widget> screens = [HomeScreen(), ProfileScreen(), SettingScreen()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +23,9 @@ class HomeScreen extends StatelessWidget {
       body: Center(child: Text("This is Home Page")),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
+        onTap: (value) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => screens[value]));
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
@@ -35,6 +40,8 @@ class HomeScreen extends StatelessWidget {
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
+  static List<Widget> screens = [HomeScreen(), ProfileScreen(), SettingScreen()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +52,9 @@ class ProfileScreen extends StatelessWidget {
       body: Center(child: Text("This is Profile Page")),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
+        onTap: (value) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => screens[value]));
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
@@ -59,6 +69,8 @@ class ProfileScreen extends StatelessWidget {
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
+  static List<Widget> screens = [HomeScreen(), ProfileScreen(), SettingScreen()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +80,10 @@ class SettingScreen extends StatelessWidget {
       ),
       body: Center(child: Text("This is Setting Page")),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: 2,
+        onTap: (value) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => screens[value]));
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
