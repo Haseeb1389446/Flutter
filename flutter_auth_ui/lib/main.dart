@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_ui/screens/login.dart';
 import 'package:flutter_auth_ui/screens/signup.dart';
 
 void main(){
@@ -6,7 +7,7 @@ void main(){
     initialRoute: "",
     routes: {
       "" : (context) => SignupScreen(),
-      // "login" : (context) => LoginScreen(),
+      "login" : (context) => LoginScreen(),
     }
   ));
 }
