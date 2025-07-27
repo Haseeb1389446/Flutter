@@ -99,7 +99,9 @@ class SignupScreen extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 30),
                     width: double.infinity,
-                    child: TextButton(onPressed: (){}, child: Text("SignUp"), style: TextButton.styleFrom(
+                    child: TextButton(onPressed: (){
+                      Navigator.of(context).pushNamed("home");
+                    }, child: Text("SignUp"), style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white
                     )),
@@ -120,14 +122,5 @@ class SignupScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
