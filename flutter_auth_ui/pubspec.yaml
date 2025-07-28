@@ -37,6 +37,7 @@ dependencies:
   icons_plus: ^5.0.0
   flutter_core_ui: ^0.0.8
   firebase_core: ^3.15.2
+  firebase_auth: ^5.7.0
 
 dev_dependencies:
   flutter_test:
