@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  SignupScreen({super.key});
   
+  final formKey = GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +30,23 @@ class SignupScreen extends StatelessWidget {
             ),
           ),
           Form(
+            key: formKey,
             child: Column(
                 children: [
+                  // Name Field
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Name must not be Empty";
+                        } else if (value.length < 3) {
+                          return "Name must have 3 characters";
+                        }
+                        return null;
+                      },
+                      controller: nameController,
                       decoration: InputDecoration(
                         label: Text("Enter Your Name", style: TextStyle(color: Colors.black)),
                         enabledBorder: OutlineInputBorder(
@@ -44,10 +61,21 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Email Field
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Email must not be empty";
+                        } else if (!value.contains("@")){
+                          return "email must have @ symbol";
+                        }
+                        return null;
+                      },
+                      controller: emailController,
                       decoration: InputDecoration(
                         label: Text("Enter Your Email", style: TextStyle(color: Colors.black)),
                         enabledBorder: OutlineInputBorder(
@@ -62,10 +90,21 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Password Field
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Password must not be empty";
+                        } else if (value.length < 8) {
+                          return "Password must have 8 characters";
+                        }
+                        return null;
+                      },
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         label: Text("Enter Your Password", style: TextStyle(color: Colors.black)),
@@ -100,13 +139,18 @@ class SignupScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 30),
                     width: double.infinity,
                     child: TextButton(onPressed: (){
-                      Navigator.of(context).pushNamed("home");
+                      if(formKey.currentState!.validate()) {
+                        print(nameController.text);
+                        print(emailController.text);
+                        print(passwordController.text);
+                      }
                     }, child: Text("SignUp"), style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white
                     )),
                   ),
 
+                  // Icon
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

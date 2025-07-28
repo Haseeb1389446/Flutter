@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
           Form(
             child: Column(
                 children: [
+                  // Email Field
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
@@ -44,6 +45,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Password Field
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
@@ -87,6 +90,7 @@ class LoginScreen extends StatelessWidget {
                     )),
                   ),
 
+                  // Icon
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
