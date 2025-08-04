@@ -32,6 +32,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           Form(
+            key: formkey,
             child: Column(
                 children: [
                   // Email Field
@@ -39,9 +40,16 @@ class LoginScreen extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
+                      validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Email must not be empty";
+                      } else if (!value.contains("@")) {
+                        return "email must have @ symbol";
+                      }
+                      return null;
+                    },
+                    controller: emailController,
                       decoration: InputDecoration(
-                        // controller: emailController,
-                        validator: 
                         label: Text("Enter Your Email", style: TextStyle(color: Colors.black)),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(width: 2, color: Colors.black)
@@ -62,6 +70,15 @@ class LoginScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
                       obscureText: true,
+                      validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Password must not be empty";
+                      } else if (value.length < 8) {
+                        return "Password must have 8 characters";
+                      }
+                      return null;
+                    },
+                    controller: passwordController,
                       decoration: InputDecoration(
                         label: Text("Enter Your Password", style: TextStyle(color: Colors.black)),
                         enabledBorder: OutlineInputBorder(
@@ -94,7 +111,18 @@ class LoginScreen extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     padding: EdgeInsets.symmetric(vertical: 30),
                     width: double.infinity,
-                    child: TextButton(onPressed: (){}, child: Text("Login"), style: TextButton.styleFrom(
+                    child: TextButton(onPressed: (){
+                      if(formkey.currentState!.validate()) {
+                        _auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((res) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${emailController.text} has been logged successfully")));
+                          Navigator.of(context).pushReplacementNamed("home");
+                      }).catchError(
+                        (err){
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $err")));
+                        }
+                      );
+                      }
+                    }, child: Text("Login"), style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white
                     )),
