@@ -1,9 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
   
+  final formkey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +40,8 @@ class LoginScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: TextFormField(
                       decoration: InputDecoration(
+                        // controller: emailController,
+                        validator: 
                         label: Text("Enter Your Email", style: TextStyle(color: Colors.black)),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(width: 2, color: Colors.black)
