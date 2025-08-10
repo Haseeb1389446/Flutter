@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/firebase_options.dart';
 import 'package:flutter_crud/screens/adduser.dart';
+import 'package:flutter_crud/screens/getuser.dart';
 
 void main(){
 
@@ -14,6 +15,6 @@ void main(){
 
   runApp(MaterialApp(
     initialRoute: "",
-    routes: {"": (context) => AddUser()},
+    routes: {"": (context) => GetUser(), "add": (context) => AddUser()},
   ));
 }
