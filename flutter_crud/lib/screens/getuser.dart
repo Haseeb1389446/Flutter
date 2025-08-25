@@ -31,13 +31,15 @@ class GetUser extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.pencil)),
                   IconButton(
                     onPressed: (){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EditUser(uId: userId)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditUser(uId: userId)));
                     },
-                    icon: Icon(CupertinoIcons.bin_xmark)
+                    icon: Icon(CupertinoIcons.pencil)
                     ),
+                  IconButton(onPressed: (){
+                    
+                  }, icon: Icon(CupertinoIcons.bin_xmark))
                 ],
               ),
             );

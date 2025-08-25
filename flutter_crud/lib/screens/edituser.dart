@@ -141,20 +141,16 @@ class _EditUserState extends State<EditUser> {
                 ),
                 onPressed: (){
                   if(formkey.currentState!.validate()){
-                    database.collection("Users").add({
+                    database.collection("Users").doc(widget.uId).set({
                       "userName": nameController.text,
                       "userEmail": emailController.text,
                       "userCity": cityController.text,
-                  }).then((res) => 
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been added Succesfully")))
-                 );
-                    Navigator.of(context).pushNamed("");
-                    nameController.clear();
-                    emailController.clear();
-                    cityController.clear();
+                   });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been updated Succesfully")));
+                    Navigator.of(context).pushReplacementNamed("");
                 }
                 },
-                child: Text("ADD", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 2),)),
+                child: Text("Update", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 2),)),
             ) 
           ],
         ),
