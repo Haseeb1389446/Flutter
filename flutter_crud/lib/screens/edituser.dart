@@ -1,9 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_crud/screens/getuser.dart';
 
-class EditUser extends StatelessWidget {
-  EditUser({super.key});
+class EditUser extends StatefulWidget {
+  EditUser({super.key, required this.uId});
+
+  final String uId;
+
+  @override
+  State<EditUser> createState() => _EditUserState();
+}
+
+class _EditUserState extends State<EditUser> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -11,6 +18,20 @@ class EditUser extends StatelessWidget {
 
   final FirebaseFirestore database = FirebaseFirestore.instance;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  getUserRecord() async {
+    return await database.collection("Users").doc(widget.uId).get();
+  }
+
+  @override
+  void initState() {
+    getUserRecord().then((res) => {
+      nameController.text = res["userName"],
+      emailController.text = res["userEmail"],
+      cityController.text = res["userCity"]
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +148,7 @@ class EditUser extends StatelessWidget {
                   }).then((res) => 
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been added Succesfully")))
                  );
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => GetUser()));
+                    Navigator.of(context).pushNamed("");
                     nameController.clear();
                     emailController.clear();
                     cityController.clear();

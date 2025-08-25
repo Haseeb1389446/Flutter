@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_crud/screens/adduser.dart';
+import 'package:flutter_crud/screens/edituser.dart';
 
 class GetUser extends StatelessWidget {
   GetUser({super.key});
@@ -23,6 +23,7 @@ class GetUser extends StatelessWidget {
             itemBuilder: (context, index) {
           var username = asyncData.data!.docs[index]["userName"];
           var useremail = asyncData.data!.docs[index]["userEmail"];
+          var userId = asyncData.data!.docs[index].id;
             return ListTile(
               title: Text("$username"),
               subtitle: Text("$useremail"),
@@ -33,7 +34,7 @@ class GetUser extends StatelessWidget {
                   IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.pencil)),
                   IconButton(
                     onPressed: (){
-                      
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EditUser(uId: userId)));
                     },
                     icon: Icon(CupertinoIcons.bin_xmark)
                     ),
@@ -46,7 +47,7 @@ class GetUser extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AddUser()));
+          Navigator.of(context).pushNamed("add");
         },
         backgroundColor: Colors.blueGrey,
         child: Icon(Icons.add),
