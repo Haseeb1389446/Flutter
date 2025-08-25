@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_crud/screens/adduser.dart';
 
 class GetUser extends StatelessWidget {
   GetUser({super.key});
@@ -30,13 +31,26 @@ class GetUser extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.pencil)),
-                  IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bin_xmark)),
+                  IconButton(
+                    onPressed: (){
+                      
+                    },
+                    icon: Icon(CupertinoIcons.bin_xmark)
+                    ),
                 ],
               ),
             );
           },);
         }
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AddUser()));
+        },
+        backgroundColor: Colors.blueGrey,
+        child: Icon(Icons.add),
+        ),
     );
   }
 }

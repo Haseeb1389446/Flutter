@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/screens/getuser.dart';
 
-class AddUser extends StatelessWidget {
-  AddUser({super.key});
+class EditUser extends StatelessWidget {
+  EditUser({super.key});
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -16,7 +16,7 @@ class AddUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("User Crud"),
+        title: Text("Edit the User"),
       ),
       body: Form(
         key: formkey,
