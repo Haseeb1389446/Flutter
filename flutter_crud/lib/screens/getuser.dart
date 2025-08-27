@@ -3,10 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/screens/edituser.dart';
 
-class GetUser extends StatelessWidget {
+class GetUser extends StatefulWidget {
   GetUser({super.key});
 
+  @override
+  State<GetUser> createState() => _GetUserState();
+}
+
+class _GetUserState extends State<GetUser> {
   final FirebaseFirestore database = FirebaseFirestore.instance;
+
   Future<QuerySnapshot<Map<String, dynamic>>> getAllUsers() async {
     return await database.collection("Users").get();
   }
@@ -38,7 +44,12 @@ class GetUser extends StatelessWidget {
                     icon: Icon(CupertinoIcons.pencil)
                     ),
                   IconButton(onPressed: (){
-                    
+                    setState(() {
+                      database.collection("Users").doc(userId).delete().then((res){
+                      print("User Deleted Successfully");
+                    });
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User Deleted Successfully.")));
                   }, icon: Icon(CupertinoIcons.bin_xmark))
                 ],
               ),
