@@ -1,4 +1,4 @@
-# 📱 Flutter Practice Repository
+# 🔵📱 Flutter Practice Repository
 
 Welcome to my **Flutter practice repo** 🎯  
 Here I keep all my practice projects and code snippets while learning **Flutter & Dart**.  
